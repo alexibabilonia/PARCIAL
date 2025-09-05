@@ -10,6 +10,7 @@
  */
 
 /* Core CSS required for Ionic components to work properly */
+@import "bootstrap/dist/css/bootstrap.min.css";
 @import "@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
@@ -35,3 +36,66 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+/* 🌍 Estilos globales */
+
+/* Fondo general */
+ion-content {
+  --background: #f5f9ff; /* Azul muy claro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Tarjeta moderna */
+.app-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Títulos */
+h2, h3, h4 {
+  font-weight: bold;
+  color: #0d6efd; /* Azul principal */
+}
+
+/* Botón principal */
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: #084298;
+}
+
+/* Botón secundario */
+.btn-outline-light {
+  border-radius: 10px;
+  border: 2px solid #0d6efd;
+  color: #0d6efd;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+.btn-outline-light:hover {
+  background: #0d6efd;
+  color: #fff;
+}
+
+/* Animación sutil */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

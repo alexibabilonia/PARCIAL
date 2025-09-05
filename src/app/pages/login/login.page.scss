@@ -1,0 +1,26 @@
+/* Fondo con degradado */
+.login-bg {
+  --background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* Tarjeta centrada */
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 15px;
+  background: #ffffffee;
+  backdrop-filter: blur(10px);
+}
+
+/* Botón de registro con estilo especial */
+.register-btn {
+  border: 2px solid #007bff;
+  color: #007bff !important;
+  font-weight: bold;
+}
+
+.register-btn:hover {
+  background-color: #007bff;
+  color: white !important;
+  transition: 0.3s;
+}

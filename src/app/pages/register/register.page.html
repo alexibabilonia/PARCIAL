@@ -1,0 +1,94 @@
+<ion-content class="ion-padding">
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card app-card">
+      <h2 class="text-center mb-4 text-primary">Crear cuenta</h2>
+
+      <form>
+        <!-- Nombre -->
+        <div class="mb-3">
+          <label for="name" class="form-label fw-bold">Nombre</label>
+          <input
+            id="name"
+            type="text"
+            class="form-control form-control-lg"
+            [(ngModel)]="user.name"
+            name="name"
+            placeholder="Ej: Jane"
+          />
+        </div>
+
+        <!-- Apellido -->
+        <div class="mb-3">
+          <label for="lastName" class="form-label fw-bold">Apellido</label>
+          <input
+            id="lastName"
+            type="text"
+            class="form-control form-control-lg"
+            [(ngModel)]="user.lastName"
+            name="lastName"
+            placeholder="Ej: Doe"
+          />
+        </div>
+
+        <!-- Correo -->
+        <div class="mb-3">
+          <label for="email" class="form-label fw-bold">Correo electrónico</label>
+          <input
+            id="email"
+            type="email"
+            class="form-control form-control-lg"
+            [(ngModel)]="user.email"
+            name="email"
+            placeholder="jane@doe.com"
+          />
+        </div>
+
+        <!-- Contraseña -->
+        <div class="mb-3">
+          <label for="password" class="form-label fw-bold">Contraseña</label>
+          <input
+            id="password"
+            type="password"
+            class="form-control form-control-lg"
+            [(ngModel)]="user.password"
+            name="password"
+            placeholder="********"
+          />
+        </div>
+
+        <!-- País -->
+        <div class="mb-4">
+          <label for="country" class="form-label fw-bold">País</label>
+          <select
+            id="country"
+            class="form-select form-select-lg"
+            [(ngModel)]="user.country"
+            name="country"
+          >
+            <option *ngFor="let c of countries" [ngValue]="c">
+              {{ c.value }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Botones -->
+        <div class="d-grid gap-2">
+          <button
+            type="button"
+            class="btn btn-primary btn-lg"
+            (click)="onRegister()"
+          >
+            Registrarse
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-light btn-lg"
+            routerLink="/login"
+          >
+            Volver al login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>
