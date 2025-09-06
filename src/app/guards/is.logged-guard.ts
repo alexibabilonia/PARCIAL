@@ -12,10 +12,10 @@ export class IsLoggedGuard implements CanActivate {
     const currentUser = localStorage.getItem('currentUser');
 
     if (currentUser) {
-      this.router.navigate(['/home']); // 👀 Ya logueado → redirige a home
+      this.router.navigate(['/home']); 
       return false;
     } else {
-      return true; // ✅ No logueado → puede entrar
+      return true; 
     }
   }
 }

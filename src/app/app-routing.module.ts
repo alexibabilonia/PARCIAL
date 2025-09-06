@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule),
-    canActivate: [IsLoggedGuard] // 👈 si ya está logueado no deja entrar
+    canActivate: [IsLoggedGuard] 
   },
   {
     path: 'register',
@@ -22,13 +22,14 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
-    canActivate: [AuthGuard] // 👈 solo logueados pueden entrar
+    canActivate: [AuthGuard] 
   },
   {
     path: 'settings',
     loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule),
-    canActivate: [AuthGuard] // 👈 también protegida
-  },  {
+    canActivate: [AuthGuard] 
+  },
+  {
     path: 'settings',
     loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
   }

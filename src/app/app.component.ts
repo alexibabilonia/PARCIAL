@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   standalone:false
 })
 export class AppComponent {
-  selectedCategory = 'all'; // 🔹 Por defecto mostrar todas
+  selectedCategory = 'all'; 
 
   constructor(private router: Router) {}
 

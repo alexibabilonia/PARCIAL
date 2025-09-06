@@ -1,4 +1,3 @@
-/* Loader centrado */
 .loader {
   display: block;
   margin: 20px auto;
@@ -6,7 +5,7 @@
   height: 40px;
 }
 
-/* Noticia principal */
+
 .main-article {
   margin-bottom: 24px;
   cursor: pointer;
@@ -42,13 +41,13 @@
   }
 }
 
-/* Tarjetas secundarias */
+
 ion-list {
-  background: transparent !important; /* 🔹 elimina fondo negro del contenedor */
+  background: transparent !important; 
 }
 
 ion-card {
-  background: #ffffff !important; /* 🔹 fuerza blanco */
+  background: #ffffff !important; 
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   margin-bottom: 16px;
@@ -79,9 +78,9 @@ ion-card {
   }
 }
 
-/* Fondo general */
+
 ion-content {
-  --background: #f9f9f9 !important; /* 🔹 fondo gris claro */
+  --background: #f9f9f9 !important; 
 }
 
 ion-toolbar {
@@ -89,7 +88,7 @@ ion-toolbar {
   --color: white;
 }
 ion-toolbar {
-  --background: #1e88e5; /* azul */
+  --background: #1e88e5;
   --color: white;
   text-align: center;
 }

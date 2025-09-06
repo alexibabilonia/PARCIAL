@@ -21,7 +21,7 @@ interface Article {
 })
 export class HomePage implements OnInit {
   apiUrl = 'https://newsapi.org/v2/top-headlines?country=us';
-  apiKey = '5c067999cef94ac58b05c0d7f88c36b7';
+  apiKey = 'fba9ff0e23a045b996e6e4c0ceb35ef1';
 
   mainArticle?: Article;
   secondaryArticles: Article[] = [];
