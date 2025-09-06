@@ -1,9 +1,9 @@
 <ion-content class="ion-padding">
   <div class="d-flex justify-content-center align-items-center vh-100">
     <div class="card app-card">
-      <h2 class="text-center mb-4 text-primary">Crear cuenta</h2>
+      <h2 class="text-center mb-4 text-primary">Registro</h2>
 
-      <form>
+      <form (ngSubmit)="onRegister()" #registerForm="ngForm">
         <!-- Nombre -->
         <div class="mb-3">
           <label for="name" class="form-label fw-bold">Nombre</label>
@@ -13,8 +13,8 @@
             class="form-control form-control-lg"
             [(ngModel)]="user.name"
             name="name"
-            placeholder="Ej: Jane"
-          />
+            placeholder="Tu nombre"
+            required />
         </div>
 
         <!-- Apellido -->
@@ -26,8 +26,8 @@
             class="form-control form-control-lg"
             [(ngModel)]="user.lastName"
             name="lastName"
-            placeholder="Ej: Doe"
-          />
+            placeholder="Tu apellido"
+            required />
         </div>
 
         <!-- Correo -->
@@ -39,53 +39,74 @@
             class="form-control form-control-lg"
             [(ngModel)]="user.email"
             name="email"
-            placeholder="jane@doe.com"
-          />
-        </div>
-
-        <!-- Contraseña -->
-        <div class="mb-3">
-          <label for="password" class="form-label fw-bold">Contraseña</label>
-          <input
-            id="password"
-            type="password"
-            class="form-control form-control-lg"
-            [(ngModel)]="user.password"
-            name="password"
-            placeholder="********"
-          />
+            placeholder="ejemplo@correo.com"
+            required />
         </div>
 
         <!-- País -->
-        <div class="mb-4">
+        <div class="mb-3">
           <label for="country" class="form-label fw-bold">País</label>
           <select
             id="country"
             class="form-select form-select-lg"
             [(ngModel)]="user.country"
             name="country"
-          >
+            required>
             <option *ngFor="let c of countries" [ngValue]="c">
-              {{ c.value }}
+              {{ c.emoji }} {{ c.value }}
             </option>
           </select>
         </div>
 
-        <!-- Botones -->
+        <!-- Contraseña -->
+        <div class="mb-3">
+          <label for="password" class="form-label fw-bold">Contraseña</label>
+          <div class="input-group input-group-lg">
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control"
+              [(ngModel)]="user.password"
+              name="password"
+              placeholder="********"
+              required />
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              (click)="togglePassword('password')">
+              <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Confirmar contraseña -->
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label fw-bold">Confirmar contraseña</label>
+          <div class="input-group input-group-lg">
+            <input
+              id="confirmPassword"
+              [type]="showConfirmPassword ? 'text' : 'password'"
+              class="form-control"
+              [(ngModel)]="user.confirmPassword"
+              name="confirmPassword"
+              placeholder="********"
+              required />
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              (click)="togglePassword('confirm')">
+              <i class="bi" [ngClass]="showConfirmPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Botón -->
         <div class="d-grid gap-2">
-          <button
-            type="button"
-            class="btn btn-primary btn-lg"
-            (click)="onRegister()"
-          >
-            Registrarse
+          <button type="submit" class="btn btn-primary btn-lg">
+            Registrar
           </button>
-          <button
-            type="button"
-            class="btn btn-outline-light btn-lg"
-            routerLink="/login"
-          >
-            Volver al login
+          <button type="button" class="btn btn-outline-light btn-lg" routerLink="/login">
+            Volver al Login
           </button>
         </div>
       </form>

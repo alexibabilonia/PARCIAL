@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
-import { CountryService } from 'src/app/services/country.service';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { CountryService } from '../../services/country.service';
+import { NotificationService } from '../../services/notification.service';
 
 interface Country {
   id: string;
   value: string;
+  emoji?: string;
 }
 
 interface User {
@@ -13,6 +17,7 @@ interface User {
   lastName: string;
   email: string;
   password: string;
+  confirmPassword?: string;
   country: Country | null;
 }
 
@@ -20,54 +25,122 @@ interface User {
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
-  standalone:false
+  standalone: false
 })
 export class RegisterPage implements OnInit {
-  user: User = {
-    id: '',
-    name: '',
-    lastName: '',
-    email: '',
-    password: '',
-    country: null,
-  };
+  @ViewChild('registerForm') registerForm!: NgForm;
 
+  user: User = this.getEmptyUser();
   countries: Country[] = [];
 
-  constructor(private countryService: CountryService) {}
+  // 👁️ Variables para mostrar/ocultar contraseñas
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
+
+  constructor(
+    private countryService: CountryService,
+    private notificationService: NotificationService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loadCountries();
   }
 
+  ionViewWillEnter() {
+    this.resetForm(); // limpia cada vez que entras al registro
+  }
+
+  private getEmptyUser(): User {
+    return {
+      id: '',
+      name: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      country: null,
+    };
+  }
+
+  private resetForm() {
+    this.user = this.getEmptyUser();
+
+    if (this.registerForm) {
+      this.registerForm.resetForm();
+    }
+  }
+
   loadCountries() {
     this.countryService.getCountries().subscribe({
       next: (data: Country[]) => {
-        this.countries = data.sort((a: Country, b: Country) =>
-          a.value.localeCompare(b.value)
-        );
+        this.countries = data.sort((a, b) => a.value.localeCompare(b.value));
       },
-      error: (err: unknown) =>
-        console.error('❌ Error cargando países', err),
+      error: () => {
+        this.notificationService.error('❌ No se pudieron cargar los países.');
+      },
     });
   }
 
-  onRegister() {
+  // 👁️ Método para alternar visibilidad de contraseñas
+  togglePassword(field: 'password' | 'confirm') {
+    if (field === 'password') {
+      this.showPassword = !this.showPassword;
+    } else {
+      this.showConfirmPassword = !this.showConfirmPassword;
+    }
+  }
+
+  async onRegister() {
     if (
       !this.user.name ||
       !this.user.lastName ||
       !this.user.email ||
       !this.user.password ||
+      !this.user.confirmPassword ||
       !this.user.country
     ) {
-      alert('⚠️ Por favor, completa todos los campos.');
+      this.notificationService.warning('⚠️ Por favor, completa todos los campos.');
       return;
     }
 
-    // Generar un ID único
-    this.user.id = uuidv4();
+    // 📌 Validar formato de correo
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.user.email)) {
+      this.notificationService.error('⚠️ Ingresa un correo válido.');
+      return;
+    }
 
-    console.log('Usuario registrado:', this.user);
-    alert(`✅ Usuario ${this.user.name} registrado con éxito`);
+    // 📌 Validar que las contraseñas coincidan
+    if (this.user.password !== this.user.confirmPassword) {
+      this.notificationService.error('⚠️ Las contraseñas no coinciden.');
+      return;
+    }
+
+    // 📌 Verificar si ya existe un usuario con ese correo
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const exists = users.some((u: any) => u.email === this.user.email);
+
+    if (exists) {
+      this.notificationService.error('❌ El correo ya está registrado.');
+      return;
+    }
+
+    //  Si todo está bien, registrar
+    this.user.id = uuidv4();
+    users.push(this.user);
+    localStorage.setItem('users', JSON.stringify(users));
+
+    await this.notificationService.success(
+      `✅ Usuario ${this.user.name} registrado con éxito`
+    );
+
+    // limpiar datos y formulario
+    this.resetForm();
+
+    // Redirigir a login después del registro
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 1200);
   }
 }

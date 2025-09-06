@@ -1,9 +1,10 @@
 <ion-content class="ion-padding">
   <div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="card app-card">
+    <div class="card app-card p-4 shadow-lg">
       <h2 class="text-center mb-4 text-primary">Iniciar sesión</h2>
 
-      <form>
+      <!-- Referencia al formulario -->
+      <form #loginForm="ngForm" (ngSubmit)="onLogin()">
         <!-- Correo -->
         <div class="mb-3">
           <label for="email" class="form-label fw-bold">Correo electrónico</label>
@@ -13,7 +14,9 @@
             class="form-control form-control-lg"
             [(ngModel)]="email"
             name="email"
-            placeholder="ejemplo@correo.com" />
+            placeholder="ejemplo@correo.com"
+            required
+          />
         </div>
 
         <!-- Contraseña -->
@@ -25,16 +28,21 @@
             class="form-control form-control-lg"
             [(ngModel)]="password"
             name="password"
-            placeholder="********" />
+            placeholder="********"
+            required
+          />
         </div>
 
         <!-- Botones -->
         <div class="d-grid gap-2">
-          <button type="button" class="btn btn-primary btn-lg" (click)="onLogin()">
+          <button type="submit" class="btn btn-primary btn-lg">
             Ingresar
           </button>
-          <!--  Este lleva a RegisterPage -->
-          <button type="button" class="btn btn-outline-light btn-lg" routerLink="/register">
+          <button
+            type="button"
+            class="btn btn-outline-light btn-lg"
+            routerLink="/register"
+          >
             Registrarse
           </button>
         </div>
