@@ -1,0 +1,101 @@
+/* Loader centrado */
+.loader {
+  display: block;
+  margin: 20px auto;
+  width: 40px;
+  height: 40px;
+}
+
+/* Noticia principal */
+.main-article {
+  margin-bottom: 24px;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #1a237e;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 6px;
+  }
+
+  small {
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  &:hover h1 {
+    text-decoration: underline;
+  }
+}
+
+/* Tarjetas secundarias */
+ion-list {
+  background: transparent !important; /* 🔹 elimina fondo negro del contenedor */
+}
+
+ion-card {
+  background: #ffffff !important; /* 🔹 fuerza blanco */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
+  ion-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #212121;
+  }
+
+  ion-card-subtitle {
+    font-size: 0.8rem;
+    color: #666;
+  }
+}
+
+/* Fondo general */
+ion-content {
+  --background: #f9f9f9 !important; /* 🔹 fondo gris claro */
+}
+
+ion-toolbar {
+  --background: #1e88e5;
+  --color: white;
+}
+ion-toolbar {
+  --background: #1e88e5; /* azul */
+  --color: white;
+  text-align: center;
+}
+
+ion-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: white;
+}

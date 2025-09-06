@@ -1,13 +1,51 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>home</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <!-- Botón de menú -->
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+
+    <!-- Título centrado -->
+    <ion-title class="ion-text-center">Noticias</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+
+  <!-- Loader -->
+  <ion-spinner *ngIf="loading" name="crescent" class="loader"></ion-spinner>
+
+  <!-- Noticia principal -->
+  <div *ngIf="mainArticle" class="main-article" (click)="openArticle(mainArticle.url)">
+    <img [src]="mainArticle.urlToImage" alt="Imagen noticia principal" />
+    <h1>{{ mainArticle.title }}</h1>
+    <p>{{ mainArticle.description }}</p>
+    <small>
+      📅 {{ mainArticle.publishedAt | date:'medium' }}  
+      | ✍️ {{ mainArticle.author || 'Desconocido' }}
+    </small>
+  </div>
+
+  <!-- Noticias secundarias -->
+  <ion-list>
+    <ion-card *ngFor="let article of secondaryArticles" (click)="openArticle(article.url)">
+      <img [src]="article.urlToImage" alt="Imagen noticia" />
+      <ion-card-header>
+        <ion-card-title>{{ article.title }}</ion-card-title>
+        <ion-card-subtitle>
+          📅 {{ article.publishedAt | date:'shortDate' }}  
+          | ✍️ {{ article.author || 'Desconocido' }}
+        </ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </ion-list>
+
+  <!-- Scroll infinito -->
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadNews($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="Cargando más noticias...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>

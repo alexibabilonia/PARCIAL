@@ -1,3 +1,84 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+<ion-menu side="start" menuId="main-menu" contentId="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <!-- Categorías -->
+      <ion-item 
+        button 
+        [class.selected]="selectedCategory === 'all'" 
+        (click)="selectCategory('all')">
+        Todas
+      </ion-item>
+
+      <ion-item 
+        button 
+        [class.selected]="selectedCategory === 'business'" 
+        (click)="selectCategory('business')">
+        Business
+      </ion-item>
+
+      <ion-item 
+        button 
+        [class.selected]="selectedCategory === 'entertainment'" 
+        (click)="selectCategory('entertainment')">
+        Entertainment
+      </ion-item>
+
+      <ion-item 
+        button 
+        [class.selected]="selectedCategory === 'general'" 
+        (click)="selectCategory('general')">
+        General
+      </ion-item>
+
+      <ion-item 
+        button 
+        [class.selected]="selectedCategory === 'health'" 
+        (click)="selectCategory('health')">
+        Health
+      </ion-item>
+
+      <ion-item 
+        button 
+        [class.selected]="selectedCategory === 'science'" 
+        (click)="selectCategory('science')">
+        Science
+      </ion-item>
+
+      <ion-item 
+        button 
+        [class.selected]="selectedCategory === 'sports'" 
+        (click)="selectCategory('sports')">
+        Sports
+      </ion-item>
+
+      <ion-item 
+        button 
+        [class.selected]="selectedCategory === 'technology'" 
+        (click)="selectCategory('technology')">
+        Technology
+      </ion-item>
+
+      <!-- Nuevo: Configuración -->
+      <ion-item routerLink="/settings">
+        <ion-icon slot="start" name="settings-outline"></ion-icon>
+        <ion-label>Configuración</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <!-- Botón Cerrar sesión -->
+    <div class="logout-btn">
+      <ion-button expand="block" color="primary" (click)="logout()">
+        Cerrar sesión
+      </ion-button>
+    </div>
+  </ion-content>
+</ion-menu>
+
+<!-- Contenido principal -->
+<ion-router-outlet id="main-content"></ion-router-outlet>

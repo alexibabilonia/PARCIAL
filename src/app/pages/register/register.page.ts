@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { CountryService } from '../../services/country.service';
 import { NotificationService } from '../../services/notification.service';
+import { LoadingController } from '@ionic/angular'; // 👈 Importar loading
 
 interface Country {
   id: string;
@@ -40,7 +41,8 @@ export class RegisterPage implements OnInit {
   constructor(
     private countryService: CountryService,
     private notificationService: NotificationService,
-    private router: Router
+    private router: Router,
+    private loadingCtrl: LoadingController // 👈 Inyectar loading
   ) {}
 
   ngOnInit() {
@@ -91,6 +93,17 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  // 👉 Método auxiliar para mostrar spinner
+  private async presentLoading(message: string = 'Procesando...') {
+    const loading = await this.loadingCtrl.create({
+      message,
+      spinner: 'crescent',
+      duration: 1500 // se cierra solo en 1.5s
+    });
+    await loading.present();
+    return loading;
+  }
+
   async onRegister() {
     if (
       !this.user.name ||
@@ -131,16 +144,19 @@ export class RegisterPage implements OnInit {
     users.push(this.user);
     localStorage.setItem('users', JSON.stringify(users));
 
-    await this.notificationService.success(
+    this.notificationService.success(
       `✅ Usuario ${this.user.name} registrado con éxito`
     );
+
+    // 👉 Mostrar spinner de carga
+    const loading = await this.presentLoading('Registrando...');
 
     // limpiar datos y formulario
     this.resetForm();
 
-    // Redirigir a login después del registro
-    setTimeout(() => {
+    // Redirigir a login cuando termine el loading
+    loading.onDidDismiss().then(() => {
       this.router.navigate(['/login']);
-    }, 1200);
+    });
   }
 }

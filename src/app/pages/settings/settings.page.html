@@ -1,52 +1,48 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title class="ion-text-center">Iniciar sesión</ion-title>
+    <ion-title class="ion-text-center">Configuración</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding login-content">
+<ion-content class="ion-padding settings-content">
   <ion-grid fixed>
     <ion-row class="ion-justify-content-center">
       <ion-col size="12" size-sm="10" size-md="8" size-lg="6">
-        
-        <ion-card class="login-card">
+
+        <ion-card class="settings-card">
           <ion-card-header>
-            <ion-card-title class="ion-text-center login-title">
-              Bienvenido
+            <ion-card-title class="ion-text-center settings-title">
+              Editar cuenta
             </ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
-            <form #loginForm="ngForm" (ngSubmit)="onLogin()">
+            <form [formGroup]="settingsForm" (ngSubmit)="saveSettings()">
+              <!-- Nombre -->
+              <ion-item lines="full">
+                <ion-label position="floating">Nombre</ion-label>
+                <ion-input formControlName="name" type="text"></ion-input>
+              </ion-item>
+
               <!-- Correo -->
               <ion-item lines="full">
                 <ion-label position="floating">Correo electrónico</ion-label>
-                <ion-input
-                  [(ngModel)]="email"
-                  name="email"
-                  type="email"
-                  required>
-                </ion-input>
+                <ion-input formControlName="email" type="email"></ion-input>
               </ion-item>
 
               <!-- Contraseña -->
               <ion-item lines="full">
-                <ion-label position="floating">Contraseña</ion-label>
-                <ion-input
-                  [(ngModel)]="password"
-                  name="password"
-                  type="password"
-                  required>
-                </ion-input>
+                <ion-label position="floating">Nueva contraseña</ion-label>
+                <ion-input formControlName="password" type="password"></ion-input>
               </ion-item>
 
               <!-- Botones -->
               <div class="ion-margin-top">
                 <ion-button expand="block" type="submit" color="primary" shape="round">
-                  Ingresar
+                  Guardar cambios
                 </ion-button>
-                <ion-button expand="block" fill="outline" color="primary" routerLink="/register" shape="round">
-                  Registrarse
+                <ion-button expand="block" fill="outline" color="medium" shape="round" (click)="goHome()">
+                  Cancelar
                 </ion-button>
               </div>
             </form>

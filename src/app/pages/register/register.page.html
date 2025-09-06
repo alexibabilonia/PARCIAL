@@ -1,115 +1,115 @@
-<ion-content class="ion-padding">
-  <div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="card app-card">
-      <h2 class="text-center mb-4 text-primary">Registro</h2>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-      <form (ngSubmit)="onRegister()" #registerForm="ngForm">
-        <!-- Nombre -->
-        <div class="mb-3">
-          <label for="name" class="form-label fw-bold">Nombre</label>
-          <input
-            id="name"
-            type="text"
-            class="form-control form-control-lg"
-            [(ngModel)]="user.name"
-            name="name"
-            placeholder="Tu nombre"
-            required />
-        </div>
+<ion-content class="ion-padding register-content">
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-sm="10" size-md="8" size-lg="6">
 
-        <!-- Apellido -->
-        <div class="mb-3">
-          <label for="lastName" class="form-label fw-bold">Apellido</label>
-          <input
-            id="lastName"
-            type="text"
-            class="form-control form-control-lg"
-            [(ngModel)]="user.lastName"
-            name="lastName"
-            placeholder="Tu apellido"
-            required />
-        </div>
+        <ion-card class="register-card">
+          <ion-card-header>
+            <ion-card-title class="ion-text-center register-title">
+              Crear cuenta
+            </ion-card-title>
+          </ion-card-header>
 
-        <!-- Correo -->
-        <div class="mb-3">
-          <label for="email" class="form-label fw-bold">Correo electrónico</label>
-          <input
-            id="email"
-            type="email"
-            class="form-control form-control-lg"
-            [(ngModel)]="user.email"
-            name="email"
-            placeholder="ejemplo@correo.com"
-            required />
-        </div>
+          <ion-card-content>
+            <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+              
+              <!-- Nombre -->
+              <ion-item>
+                <ion-label position="floating">Nombre</ion-label>
+                <ion-input
+                  [(ngModel)]="user.name"
+                  name="name"
+                  type="text"
+                  required>
+                </ion-input>
+              </ion-item>
 
-        <!-- País -->
-        <div class="mb-3">
-          <label for="country" class="form-label fw-bold">País</label>
-          <select
-            id="country"
-            class="form-select form-select-lg"
-            [(ngModel)]="user.country"
-            name="country"
-            required>
-            <option *ngFor="let c of countries" [ngValue]="c">
-              {{ c.emoji }} {{ c.value }}
-            </option>
-          </select>
-        </div>
+              <!-- Apellido -->
+              <ion-item>
+                <ion-label position="floating">Apellido</ion-label>
+                <ion-input
+                  [(ngModel)]="user.lastName"
+                  name="lastName"
+                  type="text"
+                  required>
+                </ion-input>
+              </ion-item>
 
-        <!-- Contraseña -->
-        <div class="mb-3">
-          <label for="password" class="form-label fw-bold">Contraseña</label>
-          <div class="input-group input-group-lg">
-            <input
-              id="password"
-              [type]="showPassword ? 'text' : 'password'"
-              class="form-control"
-              [(ngModel)]="user.password"
-              name="password"
-              placeholder="********"
-              required />
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              (click)="togglePassword('password')">
-              <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
-            </button>
-          </div>
-        </div>
+              <!-- Correo -->
+              <ion-item>
+                <ion-label position="floating">Correo electrónico</ion-label>
+                <ion-input
+                  [(ngModel)]="user.email"
+                  name="email"
+                  type="email"
+                  required>
+                </ion-input>
+              </ion-item>
 
-        <!-- Confirmar contraseña -->
-        <div class="mb-3">
-          <label for="confirmPassword" class="form-label fw-bold">Confirmar contraseña</label>
-          <div class="input-group input-group-lg">
-            <input
-              id="confirmPassword"
-              [type]="showConfirmPassword ? 'text' : 'password'"
-              class="form-control"
-              [(ngModel)]="user.confirmPassword"
-              name="confirmPassword"
-              placeholder="********"
-              required />
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              (click)="togglePassword('confirm')">
-              <i class="bi" [ngClass]="showConfirmPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
-            </button>
-          </div>
-        </div>
+              <!-- País -->
+              <ion-item>
+                <ion-label>País</ion-label>
+                <ion-select
+                  [(ngModel)]="user.country"
+                  name="country"
+                  placeholder="Selecciona un país"
+                  interface="popover"
+                  required>
+                  <ion-select-option *ngFor="let c of countries" [value]="c">
+                    {{ c.emoji }} {{ c.value }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
 
-        <!-- Botón -->
-        <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-primary btn-lg">
-            Registrar
-          </button>
-          <button type="button" class="btn btn-outline-light btn-lg" routerLink="/login">
-            Volver al Login
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+              <!-- Contraseña -->
+              <ion-item>
+                <ion-label position="floating">Contraseña</ion-label>
+                <ion-input
+                  [type]="showPassword ? 'text' : 'password'"
+                  [(ngModel)]="user.password"
+                  name="password"
+                  required>
+                </ion-input>
+                <ion-button fill="clear" slot="end" (click)="togglePassword('password')">
+                  <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
+                </ion-button>
+              </ion-item>
+
+              <!-- Confirmar contraseña -->
+              <ion-item>
+                <ion-label position="floating">Confirmar contraseña</ion-label>
+                <ion-input
+                  [type]="showConfirmPassword ? 'text' : 'password'"
+                  [(ngModel)]="user.confirmPassword"
+                  name="confirmPassword"
+                  required>
+                </ion-input>
+                <ion-button fill="clear" slot="end" (click)="togglePassword('confirm')">
+                  <ion-icon [name]="showConfirmPassword ? 'eye-off' : 'eye'"></ion-icon>
+                </ion-button>
+              </ion-item>
+
+              <!-- Botones -->
+              <div class="ion-margin-top">
+                <ion-button expand="block" type="submit" color="primary" shape="round">
+                  Registrar
+                </ion-button>
+                <ion-button expand="block" fill="outline" color="primary" routerLink="/login" shape="round">
+                  Volver al Login
+                </ion-button>
+              </div>
+
+            </form>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

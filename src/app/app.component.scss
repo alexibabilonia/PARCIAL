@@ -1,0 +1,18 @@
+ion-menu {
+  --background: #ffffff; 
+}
+
+ion-list {
+  background: #ffffff !important;
+}
+
+ion-item {
+  --background: #ffffff;
+  --color: #000000; 
+  font-size: 16px;
+}
+
+ion-item.selected {
+  font-weight: bold;
+  color: #1e88e5; 
+}

@@ -1,91 +1,45 @@
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
+ * Aquí van los estilos globales para toda la app
  */
 
-/* Core CSS required for Ionic components to work properly */
-@import "bootstrap/dist/css/bootstrap.min.css";
+/* Core CSS requerido por Ionic */
 @import "@ionic/angular/css/core.css";
 
-/* Basic CSS for apps built with Ionic */
+/* CSS básico de Ionic */
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
 @import "@ionic/angular/css/display.css";
 
-/* Optional CSS utils that can be commented out */
+/* Utilidades opcionales */
 @import "@ionic/angular/css/padding.css";
 @import "@ionic/angular/css/float-elements.css";
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
-
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+/* Dark mode opcional */
 @import "@ionic/angular/css/palettes/dark.system.css";
-/* 🌍 Estilos globales */
 
-/* Fondo general */
+/* 🌍 Estilos globales */
 ion-content {
   --background: #f5f9ff; /* Azul muy claro */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
 }
 
-/* Tarjeta moderna */
-.app-card {
-  background: #ffffff;
+/* ion-card moderno */
+ion-card {
   border-radius: 20px;
-  padding: 2rem;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.6s ease-in-out;
 }
 
-/* Títulos */
-h2, h3, h4 {
+/* Títulos de tarjeta */
+ion-card-title {
+  color: var(--ion-color-primary);
   font-weight: bold;
-  color: #0d6efd; /* Azul principal */
-}
-
-/* Botón principal */
-.btn-primary {
-  background-color: #0d6efd;
-  border: none;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-}
-.btn-primary:hover {
-  background-color: #084298;
-}
-
-/* Botón secundario */
-.btn-outline-light {
-  border-radius: 10px;
-  border: 2px solid #0d6efd;
-  color: #0d6efd;
-  background: #fff;
-  transition: all 0.3s ease;
-}
-.btn-outline-light:hover {
-  background: #0d6efd;
-  color: #fff;
+  font-size: 1.4rem;
 }
 
 /* Animación sutil */
@@ -98,4 +52,19 @@ h2, h3, h4 {
     opacity: 1;
     transform: translateY(0);
   }
+}
+:root {
+  --ion-color-primary: #0d6efd; /* Azul principal */
+  --ion-color-primary-rgb: 13, 110, 253;
+
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+
+  --ion-color-primary-shade: #0b5ed7;
+  --ion-color-primary-tint: #3d8bfd;
+
+  --ion-color-secondary: #ffffff;
+  --ion-color-secondary-rgb: 255, 255, 255;
+
+  --ion-color-light: #f5f9ff;
 }

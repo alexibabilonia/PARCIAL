@@ -12,9 +12,9 @@ export class AuthGuard implements CanActivate {
     const currentUser = localStorage.getItem('currentUser');
 
     if (currentUser) {
-      return true; // ✅ Está logueado → puede entrar
+      return true; // ✅ Sí hay sesión → deja pasar
     } else {
-      this.router.navigate(['/login']); // 🚫 No logueado → redirige a login
+      this.router.navigate(['/login']); // 🔒 No hay sesión → manda a login
       return false;
     }
   }

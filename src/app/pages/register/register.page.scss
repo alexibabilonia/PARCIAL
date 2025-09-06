@@ -1,0 +1,39 @@
+/* Fondo general */
+.register-content {
+  --background: #f5f6fa;
+}
+
+/* Card blanca */
+.register-card {
+  --background: #ffffff;
+  --color: #000000;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.register-title {
+  color: var(--ion-color-primary);
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+/* Campos de formulario */
+ion-item {
+  --background: #ffffff;   /* fondo blanco */
+  --color: #000000;        /* texto negro */
+  --highlight-color-focused: var(--ion-color-primary);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Inputs y labels */
+ion-label, ion-input, ion-select {
+  color: #000000 !important;
+}
+
+/* Íconos del toggle password */
+ion-button[fill="clear"] {
+  color: var(--ion-color-primary);
+}
